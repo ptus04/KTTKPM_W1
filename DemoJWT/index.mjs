@@ -18,6 +18,10 @@ const users = [
 ];
 
 app.post('/login', async (req, res) => {
+  if(req.body === undefined) {
+    return  res.status(400).json({ message: 'Missing required data' });
+  }
+
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username);
